@@ -1,0 +1,424 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap");
+
+:root {
+  --bg-soft: #f7f5f2;
+  --paper: #fdfdfb;
+  --ink: #5f4a49;
+  --muted: #7c6765;
+  --line: #ddd6d0;
+  --accent: #cb1f6e;
+  --accent-strong: #a80e58;
+  --soft-shadow: rgba(149, 104, 97, 0.18);
+  --heart-soft: rgba(198, 146, 159, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(100, 180, 230, 0.4), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(200, 150, 255, 0.35), transparent 40%),
+    linear-gradient(135deg, #e8f4f8 0%, #f0e8ff 50%, #ffe8f5 100%);
+}
+
+.scene {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  position: relative;
+  z-index: 3;
+}
+
+.card-stage,
+.final-stage {
+  width: min(95vw, 700px);
+  text-align: center;
+  transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+}
+
+.card-stage.is-hiding {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.98);
+  filter: blur(1.8px);
+}
+
+.invite-card {
+  position: relative;
+  width: min(90vw, 480px);
+  aspect-ratio: 0.9 / 1;
+  margin: 0 auto;
+  background: var(--paper);
+  box-shadow: 0 14px 34px var(--soft-shadow);
+  padding: 2.5rem 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invite-card::before,
+.invite-card::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.invite-card::before {
+  top: 12px;
+  left: 12px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.invite-card::after {
+  right: 12px;
+  bottom: 12px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.to-line {
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.95rem;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.divider {
+  margin-top: 0.25rem;
+  margin-bottom: 0.85rem;
+  width: 66%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.divider .line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+.tiny-heart {
+  color: #9b7f7a;
+  font-size: 0.7rem;
+}
+
+.question {
+  margin: 0;
+  font-size: clamp(3.2rem, 9vw, 4rem);
+  line-height: 0.95;
+  font-weight: 500;
+  font-style: italic;
+  color: #5b4947;
+}
+
+.subline {
+  margin: 0.35rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  font-style: italic;
+  color: #6f5c59;
+}
+
+.button-area {
+  position: relative;
+  width: 100%;
+  height: 86px;
+  margin-top: 0.9rem;
+}
+
+.yes-btn,
+.no-btn {
+  position: absolute;
+  top: 24px;
+  height: 46px;
+  min-width: 115px;
+  border-radius: 999px;
+  font: 600 1.22rem "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  cursor: pointer;
+  transition: transform 0.24s ease, box-shadow 0.28s ease, left 0.24s ease, top 0.24s ease, opacity 0.24s ease;
+}
+
+.yes-btn {
+  left: 0;
+  color: #fff;
+  border: 0;
+  background: linear-gradient(180deg, #dc2b81 0%, var(--accent-strong) 100%);
+  box-shadow: 0 4px 12px rgba(168, 14, 88, 0.42), 0 2px 0 rgba(115, 13, 61, 0.5);
+}
+
+.yes-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.no-btn {
+  left: calc(100% - 104px);
+  border: 1px solid #e6ddda;
+  background: #fff;
+  color: #7a6664;
+  box-shadow: 0 1px 4px rgba(126, 104, 97, 0.13);
+}
+
+.no-btn:hover {
+  transform: translateY(-1px);
+}
+
+.no-btn.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sign-off {
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.6rem;
+  color: #705f5c;
+}
+
+.final-stage {
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  pointer-events: none;
+}
+
+.final-stage.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.final-heart {
+  font-size: clamp(2.7rem, 9vw, 3.5rem);
+  color: var(--accent);
+  text-shadow: 0 4px 8px rgba(142, 22, 76, 0.2);
+  margin-bottom: 0.55rem;
+  animation: pulse 1.3s ease-in-out infinite;
+}
+
+.final-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 7vw, 3rem);
+  line-height: 1.02;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.final-message {
+  margin: 0.6rem auto 0;
+  max-width: 540px;
+  font-size: clamp(1.1rem, 4.2vw, 1.4rem);
+  line-height: 1.2;
+  font-style: italic;
+  color: #695855;
+}
+
+.ambient-hearts,
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-hearts {
+  z-index: 1;
+}
+
+.confetti-layer {
+  z-index: 4;
+}
+
+.ambient-heart {
+  position: absolute;
+  top: 102%;
+  color: var(--heart-soft);
+  text-shadow: 0 0 8px rgba(233, 196, 204, 0.45);
+  animation-name: float-up;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+
+.confetti-piece {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  opacity: 0.95;
+  transform: translate(-50%, -50%);
+  animation: burst 1.55s cubic-bezier(0.17, 0.83, 0.44, 1) forwards;
+}
+
+.editor-toggle {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 8;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffffd1;
+  color: #6b5854;
+  font: 600 0.95rem "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(120, 96, 90, 0.17);
+}
+
+.editor-panel {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 9;
+  width: min(92vw, 370px);
+  max-height: calc(100vh - 28px);
+  overflow: auto;
+  border: 1px solid #e9e1de;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 26px rgba(124, 97, 91, 0.24);
+  transform: translateX(calc(100% + 20px));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.editor-panel.is-open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.editor-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.editor-hint {
+  margin: 0.2rem 0 0.85rem;
+  color: #7e6865;
+  font-size: 0.95rem;
+}
+
+.editor-form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.editor-form label {
+  display: grid;
+  gap: 0.22rem;
+  font-size: 0.92rem;
+  color: #6e5d59;
+}
+
+.editor-form input,
+.editor-form textarea {
+  width: 100%;
+  border: 1px solid #e4dbd8;
+  border-radius: 8px;
+  padding: 0.42rem 0.62rem;
+  font: 500 0.92rem "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  color: #5f4b48;
+  background: #fff;
+}
+
+.editor-form textarea {
+  resize: vertical;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editor-actions button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  font: 600 0.94rem "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+.editor-actions button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.editor-actions button[type="button"] {
+  background: #ece6e3;
+  color: #6d5b58;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(0, -122vh, 0) rotate(260deg);
+    opacity: 0;
+  }
+}
+
+@keyframes burst {
+  to {
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r));
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 520px) {
+  .invite-card {
+    padding: 1.6rem 1.5rem 1.35rem;
+  }
+
+  .button-area {
+    height: 80px;
+  }
+
+  .yes-btn,
+  .no-btn {
+    min-width: 98px;
+    height: 40px;
+    font-size: 1.01rem;
+  }
+
+  .no-btn {
+    left: calc(100% - 98px);
+  }
+}

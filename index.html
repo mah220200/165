@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>16-5-2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-hearts" id="ambientHearts" aria-hidden="true"></div>
+
+  <main class="scene">
+    <section class="card-stage is-active" id="cardStage" aria-live="polite">
+      <article class="invite-card" id="inviteCard">
+        <p class="to-line" id="toLine"></p>
+        <div class="divider" aria-hidden="true">
+          <span class="line"></span>
+          <span class="tiny-heart">&hearts;</span>
+          <span class="line"></span>
+        </div>
+        <h1 class="question" id="questionText"></h1>
+        <p class="subline" id="sublineText"></p>
+
+        <div class="button-area" id="buttonArea">
+          <button class="yes-btn" id="yesBtn" type="button"></button>
+          <button class="no-btn" id="noBtn" type="button"></button>
+        </div>
+
+        <p class="sign-off" id="signoffText"></p>
+      </article>
+    </section>
+
+    <section class="final-stage" id="finalStage" hidden aria-live="polite">
+      <div class="final-heart" id="finalHeart">&#10084;</div>
+      <h2 class="final-title" id="finalTitle"></h2>
+      <p class="final-message" id="finalMessage"></p>
+    </section>
+  </main>
+
+  <button class="editor-toggle" id="editorToggle" type="button">Edit text</button>
+  <aside class="editor-panel" id="editorPanel" aria-hidden="true">
+    <h3 class="editor-title">Custom Content</h3>
+    <p class="editor-hint">You can change every line here and click Save.</p>
+
+    <form class="editor-form" id="editorForm">
+      <label>Recipient
+        <input name="recipient" type="text">
+      </label>
+      <label>Main question
+        <input name="question" type="text">
+      </label>
+      <label>Sub line
+        <input name="subline" type="text">
+      </label>
+      <label>Signature
+        <input name="signoff" type="text">
+      </label>
+      <label>Yes button text
+        <input name="yesLabel" type="text">
+      </label>
+      <label>No button texts (separated by |)
+        <input name="noChoices" type="text">
+      </label>
+      <label>Final title
+        <input name="finalTitle" type="text">
+      </label>
+      <label>Final message
+        <textarea name="finalMessage" rows="3"></textarea>
+      </label>
+
+      <div class="editor-actions">
+        <button type="submit">Save</button>
+        <button type="button" id="resetBtn">Reset</button>
+      </div>
+    </form>
+  </aside>
+
+  <script src="index.js"></script>
+</body>
+</html>
